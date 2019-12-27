@@ -55,9 +55,7 @@
 </body>
 </html>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="bootstrap3/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
+<?php include 'vendor.php'; ?>
 
 <script>
 $(function () {

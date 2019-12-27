@@ -2,9 +2,16 @@
 <html>
 <head>
   <title>Metode KNN Dengan PHP - rizkimuliono.id</title>
-  <link rel="stylesheet" href="bootstrap3/css/bootstrap.min.css">
-  <link rel="stylesheet" href="bootstrap3/css/bootstrap-theme.min.css">
-  <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
+  <style media="screen">
+  #multiWrapper {
+    width: 300px;
+    margin: 25px 0 0 25px;
+  }
+
+  .def-cursor {
+    cursor: default;
+  }
+  </style>
 </head>
 <body>
 

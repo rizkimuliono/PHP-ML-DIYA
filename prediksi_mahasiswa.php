@@ -15,17 +15,17 @@
       <div class="form-group">
         <label class="col-sm-2 control-label">Pilih Mahasiswa :</label>
         <div class="col-sm-8">
-          <select class="form-control select2" name="id_mhs" id="id_mhs" required>
-            <option value="" readonly >Pilih Mahasiswa</option>
-            <?php
-            $conn = koneksi();
-            $sql  = "SELECT * FROM mhs inner join detail_mhs on mhs.id_mhs = detail_mhs.id_mhs_detail GROUP BY mhs.id_mhs";
-            $hasil = mysqli_query($conn, $sql);
-            while ($r = mysqli_fetch_array($hasil)) {
-              $gender = "Perempuan";
-              if($r["jenis_kelamin"] == "L"){
-                $gender = "Laki-laki";
-              }
+            <select class="select2" name="id_mhs" id="id_mhs" required style="width:100%">
+              <?php
+              $conn = koneksi();
+              // $sql  = "SELECT * FROM mhs inner join detail_mhs on mhs.id_mhs = detail_mhs.id_mhs_detail GROUP BY mhs.id_mhs";
+              $sql  = "SELECT * FROM mhs_test inner join detail_mhs_test on mhs_test.id_mhs = detail_mhs_test.id_mhs_detail GROUP BY mhs_test.id_mhs";
+              $hasil = mysqli_query($conn, $sql);
+              while ($r = mysqli_fetch_array($hasil)) {
+                $gender = "Perempuan";
+                if($r["jenis_kelamin"] == "L"){
+                  $gender = "Laki-laki";
+                }
               ?>
               <option value="<?=$r['id_mhs']?>">
                 <?php echo $r['nama_mhs']?> |
@@ -41,14 +41,14 @@
                 <?php echo $r['IPS10']?> |
                 <?php echo $r['sks_lulus']?>
               </option>
-            <?php } ?>
-          </select>
+              <?php } ?>
+            </select>
         </div>
       </div>
       <div class="form-group">
         <label class="col-sm-2 control-label">Tetangga Terdekat (K):</label>
         <div class="col-sm-8">
-          <select class="form-control select2" name="nilaik" required>
+          <select class="select2" name="nilaik" required style="width:100%">
             <option value="" readonly >Pilih</option>
             <option>5</option>
             <option>9</option>
@@ -71,14 +71,14 @@
 </body>
 </html>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="bootstrap3/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
+<?php include 'vendor.php'; ?>
 
 <script>
+
 $(function () {
   $('#loader').hide();
   $('.select2').select2();
+
 
   $("#form").submit(function(event){
     event.preventDefault();

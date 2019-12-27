@@ -20,10 +20,10 @@ while ($row = mysqli_fetch_array($hasil)) {
   $samples[$i][4] = $row['IPS5'];
   $samples[$i][5] = $row['IPS6'];
   $samples[$i][6] = $row['IPS7'];
-  $samples[$i][7] = $row['IPS8'];
-  $samples[$i][8] = $row['IPS9'];
-  $samples[$i][9] = $row['IPS10'];
-  $samples[$i][10] = $row['sks_lulus'];
+  //$samples[$i][7] = $row['IPS8'];
+  //$samples[$i][8] = $row['IPS9'];
+  //$samples[$i][9] = $row['IPS10'];
+  $samples[$i][7] = $row['sks_lulus'];
   $i++;
 }
 
@@ -48,7 +48,7 @@ $classifier = new KNearestNeighbors($k = $nilaik);
 $classifier->train($samples, $labels);
 // print_r($classifier->predict([2.4, 4.4]));
 
-$sql_test  = "SELECT * FROM mhs, prodi, detail_mhs WHERE mhs.prodi_id = prodi.id_prodi AND detail_mhs.id_mhs_detail = mhs.id_mhs AND mhs.id_mhs = '$id_mhs'";
+$sql_test  = "SELECT * FROM mhs_test, prodi, detail_mhs_test WHERE mhs_test.prodi_id = prodi.id_prodi AND detail_mhs_test.id_mhs_detail = mhs_test.id_mhs AND mhs_test.id_mhs = '$id_mhs'";
 $hasil_test = mysqli_query($koneksi, $sql_test);
 $data_test = array();
 $j = 0;
@@ -60,14 +60,14 @@ while ($row = mysqli_fetch_array($hasil_test)) {
   $data_test[$j][4] = $row['IPS5'];
   $data_test[$j][5] = $row['IPS6'];
   $data_test[$j][6] = $row['IPS7'];
-  $data_test[$j][7] = $row['IPS8'];
-  $data_test[$j][8] = $row['IPS9'];
-  $data_test[$j][9] = $row['IPS10'];
-  $data_test[$j][10] = $row['sks_lulus'];
+  //$data_test[$j][7] = $row['IPS8'];
+  //$data_test[$j][8] = $row['IPS9'];
+  //$data_test[$j][9] = $row['IPS10'];
+  $data_test[$j][7] = $row['sks_lulus'];
   $j++;
 }
 
-$sql_test_detail  = "SELECT * FROM mhs, prodi, detail_mhs WHERE mhs.prodi_id = prodi.id_prodi AND detail_mhs.id_mhs_detail = mhs.id_mhs AND mhs.id_mhs = '$id_mhs'";
+$sql_test_detail  = "SELECT * FROM mhs_test, prodi, detail_mhs_test WHERE mhs_test.prodi_id = prodi.id_prodi AND detail_mhs_test.id_mhs_detail = mhs_test.id_mhs AND mhs_test.id_mhs = '$id_mhs'";
 $hasil_test_detail = mysqli_query($koneksi, $sql_test_detail);
 $data_test_detail = array();
 $n = 0;
@@ -77,7 +77,7 @@ while ($row = mysqli_fetch_array($hasil_test_detail)) {
   $data_test_detail[$n]['prodi'] = $row['nama_prodi'];
   $n++;
 }
-// print("<pre>".print_r($data_test, true)."</pre>");
+print("<pre>".print_r($data_test, true)."</pre>");
 $prediksi = $classifier->predict($data_test);
 
 ?>
@@ -113,10 +113,10 @@ $prediksi = $classifier->predict($data_test);
     <td><?php echo $data_test[0][4]; ?></td>
     <td><?php echo $data_test[0][5]; ?></td>
     <td><?php echo $data_test[0][6]; ?></td>
+    <td><?php //echo $data_test[0][7]; ?></td>
+    <td><?php //echo $data_test[0][8]; ?></td>
+    <td><?php //echo $data_test[0][9]; ?></td>
     <td><?php echo $data_test[0][7]; ?></td>
-    <td><?php echo $data_test[0][8]; ?></td>
-    <td><?php echo $data_test[0][9]; ?></td>
-    <td><?php echo $data_test[0][10]; ?></td>
     <td><?php echo $data_test_detail[0]['jk']; ?></td>
     <td><?php echo $nilaik ?></td>
     <td>
